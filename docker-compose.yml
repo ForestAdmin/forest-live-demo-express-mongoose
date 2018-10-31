@@ -1,0 +1,9 @@
+mongo:
+  image : tutum/mongodb:latest
+  container_name : forest_live_demo_express_mongoose
+  ports :
+    - "27017:27017"
+  environment:
+    - MONGODB_DATABASE=forest_demo
+    - MONGODB_USER=forest
+    - MONGODB_PASS=secret

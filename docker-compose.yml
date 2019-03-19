@@ -1,9 +1,15 @@
-mongo:
-  image : tutum/mongodb:latest
-  container_name : forest_live_demo_express_mongoose
-  ports :
-    - "27017:27017"
-  environment:
-    - MONGODB_DATABASE=forest_demo
-    - MONGODB_USER=forest
-    - MONGODB_PASS=secret
+version: '3.7'
+
+services:
+    mongodb:
+        image: mongo:4.0.6
+        container_name: forest_live_demo_express_mongoose
+        restart: always
+        environment:
+            MONGO_INITDB_DATABASE: forest_demo
+            MONGO_INITDB_ROOT_USERNAME: forest
+            MONGO_INITDB_ROOT_PASSWORD: secret
+        ports:
+            - 27017:27017
+        volumes:
+            - ./init:/docker-entrypoint-initdb.d

@@ -3,13 +3,31 @@ version: '3.7'
 services:
     mongodb:
         image: mongo:4.0.6
-        container_name: forest_live_demo_express_mongoose
+        container_name: forest_mongoose_db
+        working_dir: /docker-entrypoint-initdb.d
         restart: always
         environment:
-            MONGO_INITDB_DATABASE: forest_demo
+            MONGO_INITDB_DATABASE: forest_mongoose_demo
             MONGO_INITDB_ROOT_USERNAME: forest
             MONGO_INITDB_ROOT_PASSWORD: secret
         ports:
             - 27017:27017
         volumes:
-            - ./init:/docker-entrypoint-initdb.d
+            - ./init/mongodb/:/docker-entrypoint-initdb.d
+
+    mongoose-app:
+        image: node:11.12
+        container_name: forest_mongoose_app
+        user: node
+        working_dir: /home/node/app
+        stdin_open: true
+        tty: true
+        environment:
+            DATABASE_URL: mongodb://forest:secret@mongodb:27017/forest_mongoose_demo
+        ports:
+            - 3000:3000
+        volumes:
+            - .:/home/node/app
+        command: 
+            - ./init/mongoose-app/run.sh
+ 

@@ -1,12 +1,18 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
-  id: String,
-  created_at: Date,
-  updated_at: Date,
-  price: Number,
   label: String,
-  picture: String
+  description: String,
+  price: Number,
+  material: String,
+  color: String,
+  image: String,
+  createdAt: Date,
+  updateAt: Date,
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  }]
 }, {
   timestamps: true
 });

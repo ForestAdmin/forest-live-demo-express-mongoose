@@ -4,9 +4,16 @@ const schema = mongoose.Schema({
   firstname: String,
   lastname: String,
   email: String,
-  avatar: String,
-  birth_date: Date,
-  phone: String
+  createdAt: Date,
+  updatedAt: Date,
+  address: {
+  	type: String,
+  	ref: 'Address',
+  },
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  }]
 }, {
   timestamps: true
 });

@@ -27,9 +27,12 @@ Make sure you wait for the "Your Forest Admin panel is available at..." message 
 
 Execute the following commands:
 ```
-docker exec -it forest_mongoose_db bash
+docker exec -it forest_mongoose_db mongo -u forest -p secret forest_mongoose_demo
 ```
-Then, from the container:
-```
-mongo -u forest -p secret forest_mongoose_demo
-```
+
+### Appendix 2: Want to clean your docker containers?
+
+Clean your containers by running:
+  - `docker-compose stop` if your containers aren't stopped yet
+  - `docker rm forest_mongoose_app`
+  - `docker rm forest_mongoose_db`

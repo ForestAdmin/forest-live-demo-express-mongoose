@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
-  firstname: String,
-  lastname: String,
-  email: String,
+  label: String,
+  description: String,
+  price: Number,
+  material: String,
+  color: String,
+  image: String,
   createdAt: Date,
-  updatedAt: Date,
-  address: {
-  	type: String,
-  	ref: 'Address',
-  },
+  updateAt: Date,
   orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Order'
@@ -18,4 +17,4 @@ const schema = mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('Customer', schema);
+module.exports = mongoose.model('Product', schema);

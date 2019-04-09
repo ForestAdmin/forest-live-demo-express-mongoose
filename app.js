@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var fs = require('fs');
+var cors = require('express-cors');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -19,14 +19,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(cors({
+  allowedOrigins: ['*.forestadmin.com'],
+  headers: ['Authorization', 'X-Requested-With', 'Content-Type']
+}));
+
+fs.readdirSync('./routes').forEach((file) => {
+  if (file[0] !== '.') {
+    app.use('/forest', require('./routes/' + file));
+  }
+});
 
 app.use(require('forest-express-mongoose').init({
   modelsDir: __dirname + '/models',
   envSecret: process.env.FOREST_ENV_SECRET,
   authSecret: process.env.FOREST_AUTH_SECRET,
-  mongoose: require('mongoose'),
+  mongoose
 }));
 
 // catch 404 and forward to error handler

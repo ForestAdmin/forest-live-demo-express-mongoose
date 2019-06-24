@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "db:drop": "node ./scripts/database/drop",
+    "db:seed": "node ./scripts/database/seed.js",
     "start": "node ./bin/www"
   },
   "dependencies": {

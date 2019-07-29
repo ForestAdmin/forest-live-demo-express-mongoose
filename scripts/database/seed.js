@@ -12,7 +12,7 @@ async function perform() {
         promises.push(Customer.create({
             firstname: faker.name.firstName(),
             lastname: faker.name.lastName(),
-            email: 'test',
+            email: faker.internet.email(),
             avatar: faker.image.avatar(),
             birth_date: faker.date.past((Math.random() * (90-18) + 18), new Date()),
             phone: faker.phone.phoneNumber()

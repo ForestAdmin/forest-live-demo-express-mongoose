@@ -6,7 +6,8 @@ const schema = mongoose.Schema({
   email: String,
   avatar: String,
   birth_date: Date,
-  phone: String
+  phone: String,
+  project: {type: mongoose.Schema.Types.ObjectId, ref: 'Project'},
 }, {
   timestamps: true
 });

@@ -1,4 +1,6 @@
-# Forest Mongoose sample project
+# Forest Admin Demo with a Mongodb database
+
+This project is a demo of a liana integration on an Express server using Mongoose ORM.
 
 ## Installation
 
@@ -21,3 +23,9 @@ Once container is running seed the database
 ## Run
 * `nodemon`
 * Visit your app at [http://localhost:3000](http://localhost:3000)
+
+## Community
+
+👇 Join our Slack community of +1000 developers
+
+[![Slack Status](http://community.forestadmin.com/badge.svg)](https://community.forestadmin.com)
